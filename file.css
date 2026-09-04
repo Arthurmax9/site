@@ -118,8 +118,8 @@ h2.center{
 /* Imagem */
 .sobre-img{
   position:relative;
-  width:240px;   /* ← ajuste o tamanho aqui */
-  height:240px;  /* ← mantenha igual ao width (redondo) */
+  width:240px;
+  height:240px;
   flex-shrink:0;
 }
 .sobre-img-glow{
@@ -142,7 +142,7 @@ h2.center{
   width:100%;
   height:100%;
   border-radius:50%;
-  overflow:hidden; /* garante que a img respeite o círculo */
+  overflow:hidden;
 }
 
 .foto-placeholder img{
@@ -155,7 +155,6 @@ h2.center{
   box-shadow:0 10px 40px rgba(0,0,0,0.50);
   display:block;
 }
-
 
 @keyframes pulseGlow{
   0%,100%{ opacity:0.7; transform:scale(1); }
@@ -269,11 +268,13 @@ h2.center{
   align-items:center;
   text-align:center;
   height:100%;
+  width:100%;
+  max-width:100%;
 }
 
 .plano-card:hover{ transform:translateY(-6px); }
 
-/* Card "Profissional" um pouquinho maior, mantendo alinhamento na mesma linha */
+/* Card "Profissional" um pouquinho maior, mantendo alinhamento na mesma linha (desktop) */
 .plano-card.destaque{
   border:2px solid var(--neon-purple);
   background:linear-gradient(160deg, rgba(139,92,246,0.15), rgba(0,255,171,0.06));
@@ -325,7 +326,7 @@ h2.center{
 }
 .plano-lista li{ padding:7px 0; color:var(--text); font-size:13.5px; text-align:center; }
 
-.plano-card .btn{ margin-top:auto; }
+.plano-card .btn{ margin-top:auto; width:100%; }
 
 /* Selo "Mais escolhido" personalizado */
 .badge-top{
@@ -378,6 +379,7 @@ h2.center{
   height:100%;
   object-fit:cover;
   border-radius:50%;
+  display:block;
 }
 @keyframes pulse{ 0%{box-shadow:0 0 0 0 rgba(0,255,171,0.5);} 70%{box-shadow:0 0 0 15px rgba(0,255,171,0);} 100%{box-shadow:0 0 0 0 rgba(0,255,171,0);} }
 
@@ -394,8 +396,44 @@ h2.center{
   .menu-toggle{ display:block; }
   .hero, .sobre, .habilidades, .modelos, .depoimentos, .plano, .faq, .contato{ padding:60px 25px; }
   .hero h1{ font-size:34px; }
-  .skills-grid, .cards-grid, .depo-grid{ grid-template-columns:1fr; }
+
+  /* Grids em 1 coluna no mobile (inclui planos-grid corrigido) */
+  .skills-grid, .cards-grid, .depo-grid, .planos-grid{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+
   .sobre-container{ flex-direction:column; text-align:center; justify-content:center; gap:35px; }
   .sobre-img{ width:180px; height:180px; margin:0 auto; }
   .sobre-stats{ justify-content:center; }
+
+  /* Corrige o card destaque no mobile (margens negativas eram só pro layout de 3 colunas) */
+  .plano-card, .plano-card.destaque{
+    margin-top:0;
+    margin-bottom:0;
+    padding:30px 22px;
+    width:100%;
+    max-width:100%;
+  }
+
+  .preco-linha{ min-height:auto; }
+  .preco-vista{ min-height:auto; }
+
+  /* WhatsApp float menor e mais próximo da borda no mobile */
+  .whatsapp-float{
+    width:50px;
+    height:50px;
+    font-size:20px;
+    bottom:18px;
+    right:18px;
+  }
+}
+
+@media (max-width:480px){
+  .hero h1{ font-size:28px; }
+  h2{ font-size:28px; }
+  .plano-card, .plano-card.destaque{
+    padding:26px 18px;
+  }
+  .preco-mensal strong{ font-size:28px; }
 }
